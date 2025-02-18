@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">s
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h1 class="text-2xl font-bold text-center mb-4">Login</h1>
+    <form id="login-form" class="space-y-4">
+      <!-- Campo de Identificador -->
+      <div>
+        <label for="identificador" class="block text-gray-700 font-medium">Identificador</label>
+        <input 
+          type="text" 
+          id="identificador" 
+          name="identificador" 
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Digite seu identificador"
+          required
+        />
+      </div>
+
+      <!-- Botão de Login -->
+      <button 
+        type="submit" 
+        class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+        Entrar
+      </button>
+    </form>
+
+    <!-- Link para Criar Conta -->
+    <div class="text-center mt-4">
+      <p class="text-sm text-gray-600">
+        Não tem uma conta?
+        <a href="cadastro.html" class="text-blue-500 hover:underline">Crie aqui</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
