@@ -38,7 +38,7 @@ public class GUITecnico extends JDialog {
     JLabel lbIdTecnico = new JLabel("Id do Técnico");
     JTextField tfIdTecnico = new JTextField(20);
 
-    JLabel lbNomeT = new JLabel("Nome do Paciente");
+    JLabel lbNomeT = new JLabel("Nome do Técnico");
     JTextField tfNomeT = new JTextField(50);
     
 
@@ -375,7 +375,7 @@ public class GUITecnico extends JDialog {
     }
 
     public static void main(String[] args) {
-        GUIMedico guiMedico = new GUIMedico();
+        GUITecnico guiTecnico = new GUITecnico();
     }
 
 }
