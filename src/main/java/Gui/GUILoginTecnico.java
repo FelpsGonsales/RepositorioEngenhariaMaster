@@ -2,7 +2,7 @@ package Gui;
 
 
 import DAOs.DAOtecnico;
-import Gui.GUIMedico;
+import Gui.GUITecnico;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class GUILoginTecnico extends JFrame {
-    JTextField tfCRM = new JTextField(15);
+    JTextField tfId = new JTextField(15);
     JButton btLogin = new JButton("Login");
     JButton btCancelar = new JButton("Cancelar");
 
@@ -21,14 +21,14 @@ public class GUILoginTecnico extends JFrame {
         setLayout(new FlowLayout());
 
         add(new JLabel("Identificador:"));
-        add(tfCRM);
+        add(tfId);
         add(btLogin);
         add(btCancelar);
 
         btLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String identificador = tfCRM.getText().trim();
+                String identificador = tfId.getText().trim();
                 if (identificador.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Por favor, insira seu Identificador.");
                     return;
@@ -42,7 +42,7 @@ public class GUILoginTecnico extends JFrame {
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuário não encontrado. Redirecionando...");
-                    new GUIMedico();
+                    new GUITecnico();
                 }
             }
         });
