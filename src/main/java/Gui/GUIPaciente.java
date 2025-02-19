@@ -1,7 +1,7 @@
 package Gui;
 
-import DAOs.DAOmedico;
-import Entidades.medico;
+import DAOs.DAOpaciente;
+import Entidades.paciente;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -36,7 +36,7 @@ public class GUIPaciente extends JDialog {
     JPanel pnCentro = new JPanel();
     JPanel pnSul = new JPanel();
     JLabel lbcrmMedico = new JLabel("Id do Paciente");
-    JTextField tfcrmMedico = new JTextField(20);
+    JTextField idpaciente = new JTextField(20);
 
     JLabel lbNome = new JLabel("Nome do Paciente");
     JTextField tfNome = new JTextField(50);
@@ -55,11 +55,11 @@ public class GUIPaciente extends JDialog {
     JButton btListar = new JButton("Listar");
     JButton btCancelar = new JButton("Cancelar");
 
-    DAOmedico daoMedico = new DAOmedico();
-    medico medico = new medico();
+    DAOpaciente daoPaciente = new DAOpaciente();
+    paciente paciente = new paciente();
     String acao = "";
 
-    String[] colunas = new String[]{"Id do Paciente", "Nome do Paciente", "Idade"};
+    String[] colunas = new String[]{"Cpf do Paciente", "Nome do Paciente", "Idade"};
     String[][] dados = new String[0][colunas.length];
 
     DefaultTableModel model = new DefaultTableModel(dados, colunas);
@@ -91,7 +91,7 @@ public class GUIPaciente extends JDialog {
 
         pnNorte.setLayout(new FlowLayout(FlowLayout.LEFT));
         pnNorte.add(lbcrmMedico);
-        pnNorte.add(tfcrmMedico);
+        pnNorte.add(idpaciente);
         pnNorte.add(btBuscar);
         pnNorte.add(btAdicionar);
         pnNorte.add(btAlterar);
@@ -152,19 +152,19 @@ public class GUIPaciente extends JDialog {
 
         tfNome.setEditable(false);
 
-        tfcrmMedico.setBackground(Color.black);
-        tfcrmMedico.setForeground(Color.green);
+        idpaciente.setBackground(Color.black);
+        idpaciente.setForeground(Color.green);
         btBuscar.setForeground(Color.green);
         btBuscar.setBackground(Color.black);
         btBuscar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                medico = new medico();
-                tfcrmMedico.setText(tfcrmMedico.getText().trim());//caso tenham sido digitados espaços
+                paciente = new paciente();
+                idpaciente.setText(idpaciente.getText().trim());//caso tenham sido digitados espaços
 
-                if (tfcrmMedico.getText().equals("")) {
-                    List<String> listaAuxiliar = daoMedico.listInOrderNomeStrings("crm");
+                if (idpaciente.getText().equals("")) {
+                    List<String> listaAuxiliar = daoPaciente.listInOrderNomeStrings("crm");
                     if (listaAuxiliar.size() > 0) {
                         Point lc = btBuscar.getLocationOnScreen();
                         lc.x = lc.x + btBuscar.getWidth();
@@ -173,23 +173,23 @@ public class GUIPaciente extends JDialog {
                                 lc.y).getValorRetornado();
                         if (!selectedItem.equals("")) {
                             String[] aux = selectedItem.split("-");
-                            tfcrmMedico.setText(aux[0]);
+                            idpaciente.setText(aux[0]);
                             btBuscar.doClick();
                         } else {
-                            tfcrmMedico.requestFocus();
-                            tfcrmMedico.selectAll();
+                            idpaciente.requestFocus();
+                            idpaciente.selectAll();
                         }
                     }
 
-                    tfcrmMedico.requestFocus();
-                    tfcrmMedico.selectAll();
+                    idpaciente.requestFocus();
+                    idpaciente.selectAll();
                 } else {
                     try {
-                        medico.setcrm(Integer.valueOf(tfcrmMedico.getText()));
-                        medico = daoMedico.obter(medico.getcrm());
-                        if (medico != null) { //se encontrou na lista
-                           tfNome.setText(String.valueOf(medico.getnome_medico()));
-                           tfArea.setText(String.valueOf(medico.getarea()));
+                        paciente.setidpaciente(Integer.valueOf(idpaciente.getText()));
+                        paciente = daoPaciente.obter(paciente.getidpaciente());
+                        if (paciente != null) { //se encontrou na lista
+                           tfNome.setText(String.valueOf(paciente.getnome_paciente()));
+                           tfArea.setText(String.valueOf(paciente.getidade()));
 
                             btAdicionar.setVisible(false);
                             btAlterar.setVisible(true);
@@ -206,13 +206,13 @@ public class GUIPaciente extends JDialog {
                             btBuscar.setVisible(true);
                             btListar.setVisible(true);
                         }
-                        tfcrmMedico.setBackground(Color.black);
-                        tfcrmMedico.setForeground(Color.green);
+                        idpaciente.setBackground(Color.black);
+                        idpaciente.setForeground(Color.green);
                     } catch (Exception x) {
-                        tfcrmMedico.setOpaque(true);
-                        tfcrmMedico.selectAll();
-                        tfcrmMedico.requestFocus();
-                        tfcrmMedico.setBackground(Color.yellow);
+                        idpaciente.setOpaque(true);
+                        idpaciente.selectAll();
+                        idpaciente.requestFocus();
+                        idpaciente.setBackground(Color.yellow);
 
                     }
                 }
@@ -223,7 +223,7 @@ public class GUIPaciente extends JDialog {
         btAdicionar.addActionListener((ActionEvent e) -> {
             requestFocus();
             tfNome.requestFocus();
-            tfcrmMedico.setEnabled(false);
+            idpaciente.setEnabled(false);
             tfNome.setEditable(true);
             tfArea.setEditable(true);
             tfArea.setText("");
@@ -239,26 +239,26 @@ public class GUIPaciente extends JDialog {
         btSalvar.setBackground(Color.black);
         btSalvar.addActionListener((ActionEvent e) -> {
             if (acao.equals("Adicionar")) {
-                medico = new medico();
+                paciente = new paciente();
             }
-
-            medico.setcrm(Integer.valueOf(tfcrmMedico.getText()));
-            medico.setnome_medico(tfNome.getText());
-            medico.setarea(tfArea.getText());
+            
+            paciente.setidpaciente(Integer.valueOf(idpaciente.getText()));
+            paciente.setnome_paciente(tfNome.getText());
+            paciente.setidade(tfArea.getText());
             
             
             if (acao.equals("Adicionar")) {
-                daoMedico.inserir(medico);
+                daoPaciente.inserir(paciente);
             } else {
-                daoMedico.atualizar(medico);
+                daoPaciente.atualizar(paciente);
             }
             btSalvar.setVisible(false);
             btCancelar.setVisible(false);
-            tfcrmMedico.setEnabled(true);
-            tfcrmMedico.setEditable(true);
-            tfcrmMedico.requestFocus();
+            idpaciente.setEnabled(true);
+            idpaciente.setEditable(true);
+            idpaciente.requestFocus();
 
-            tfcrmMedico.setText("");
+            idpaciente.setText("");
             tfNome.setText("");
             tfArea.setText("");
             
@@ -274,7 +274,7 @@ public class GUIPaciente extends JDialog {
             btBuscar.setVisible(false);
             btAlterar.setVisible(false);
             tfNome.requestFocus();
-            tfcrmMedico.setEditable(false);
+            idpaciente.setEditable(false);
             tfNome.setEditable(true);
             tfArea.setEditable(true);
 
@@ -290,14 +290,14 @@ public class GUIPaciente extends JDialog {
             int response = JOptionPane.showConfirmDialog(cp, "Confirme a exclusão?", "Confirm",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION) {
-                daoMedico.remover(medico);
-                System.out.println(medico.toString());
+                daoPaciente.remover(paciente);
+                System.out.println(paciente.toString());
             }
             btExcluir.setVisible(false);
-            tfcrmMedico.setEnabled(true);
-            tfcrmMedico.setEditable(true);
-            tfcrmMedico.requestFocus();
-            tfcrmMedico.setText("");
+            idpaciente.setEnabled(true);
+            idpaciente.setEditable(true);
+            idpaciente.requestFocus();
+            idpaciente.setText("");
             tfNome.setText("");
             tfArea.setText("");
 
@@ -315,7 +315,7 @@ public class GUIPaciente extends JDialog {
         btListar.setForeground(Color.green);
         btListar.setBackground(Color.black);
         btListar.addActionListener((ActionEvent e) -> {
-            List<medico> listaMedico = daoMedico.listInOrderNome();
+            List<paciente> listaMedico = daoPaciente.listInOrderNome();
             String[] colunas1 = {"Crm", "Nome do Médico", "Area do Médico"};
             Object[][] dados1 = new Object[listaMedico.size()][colunas1.length];
             String aux[];
@@ -343,10 +343,10 @@ public class GUIPaciente extends JDialog {
         btCancelar.setBackground(Color.black);
         btCancelar.addActionListener((ActionEvent e) -> {
             btCancelar.setVisible(false);
-            tfcrmMedico.setText("");
-            tfcrmMedico.requestFocus();
-            tfcrmMedico.setEnabled(true);
-            tfcrmMedico.setEditable(true);
+            idpaciente.setText("");
+            idpaciente.requestFocus();
+            idpaciente.setEnabled(true);
+            idpaciente.setEditable(true);
             tfNome.setText("");
 
             tfArea.setText("");
@@ -375,7 +375,7 @@ public class GUIPaciente extends JDialog {
     }
 
     public static void main(String[] args) {
-        GUIMedico guiMedico = new GUIMedico();
+        GUIPaciente guiPaciente = new GUIPaciente();
     }
 
 }
