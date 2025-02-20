@@ -83,10 +83,10 @@ public class GUIAltPaciente extends JDialog {
         cp.add(pnCentro, BorderLayout.CENTER);
         cp.add(pnSul, BorderLayout.SOUTH);
 
-        pnNorte.setBackground(Color.black);
-        pnCentro.setBackground(Color.black);
-        pnSul.setBackground(Color.black);
-        pnSul.setBorder(BorderFactory.createLineBorder(Color.gray));
+        pnNorte.setBackground(new Color(209,213,219));
+        pnCentro.setBackground(new Color(209,213,219));
+        pnSul.setBackground(new Color(209,213,219));
+        pnSul.setBorder(BorderFactory.createLineBorder(new Color(37, 99, 235),1));
 
         pnNorte.setLayout(new FlowLayout(FlowLayout.LEFT));
         pnNorte.add(lbcrmMedico);
@@ -112,20 +112,20 @@ public class GUIAltPaciente extends JDialog {
         
         
 
-        tfNome.setBackground(Color.black);
-        tfNome.setForeground(Color.green);
+        tfNome.setBackground(new Color(209,213,219));
+        tfNome.setForeground(new Color(59, 130, 246));
 
-        lbNome.setForeground(Color.green);
-        lbNome.setBackground(Color.black);
+        lbNome.setForeground(new Color(59, 130, 246));
+        lbNome.setBackground(new Color(209,213,219));
 
-        lbcrmMedico.setBackground(Color.black);
-        lbcrmMedico.setForeground(Color.green);
+        lbcrmMedico.setBackground(new Color(209,213,219));
+        lbcrmMedico.setForeground(new Color(59, 130, 246));
 
-        tfArea.setForeground(Color.green);
-        tfArea.setBackground(Color.black);
+        tfArea.setForeground(new Color(59, 130, 246));
+        tfArea.setBackground(new Color(209,213,219));
 
-        lbArea.setBackground(Color.black);
-        lbArea.setForeground(Color.green);
+        lbArea.setBackground(new Color(209,213,219));
+        lbArea.setForeground(new Color(59, 130, 246));
         
         
         cardLayout = new CardLayout();
@@ -135,25 +135,25 @@ public class GUIAltPaciente extends JDialog {
             pnVazio.add(new JLabel(" "));
         }
         pnSul.add(pnVazio, "vazio");
-        pnVazio.setBackground(Color.black);
+        pnVazio.setBackground(new Color(209,213,219));
         pnSul.add(pnAvisos, " ");
-        pnAvisos.setBackground(Color.black);
-        pnAvisos.setForeground(Color.green);
+        pnAvisos.setBackground(new Color(209,213,219));
+        pnAvisos.setForeground(new Color(59, 130, 246));
         pnSul.add(pnListagem, "listagem");
-        pnListagem.setBackground(Color.black);
-        pnListagem.setForeground(Color.green);
+        pnListagem.setBackground(new Color(209,213,219));
+        pnListagem.setForeground(new Color(59, 130, 246));
         tabela.setEnabled(false);
-        tabela.setBackground(Color.black);
-        tabela.setForeground(Color.green);
+        tabela.setBackground(new Color(209,213,219));
+        tabela.setForeground(new Color(59, 130, 246));
 
         pnAvisos.add(new JLabel("Avisos"));
 
         tfNome.setEditable(false);
 
-        tfcrmMedico.setBackground(Color.black);
-        tfcrmMedico.setForeground(Color.green);
-        btBuscar.setForeground(Color.green);
-        btBuscar.setBackground(Color.black);
+        tfcrmMedico.setBackground(new Color(209,213,219));
+        tfcrmMedico.setForeground(new Color(59, 130, 246));
+        btBuscar.setForeground(new Color(59, 130, 246));
+        btBuscar.setBackground(new Color(209,213,219));
         btBuscar.addActionListener(new ActionListener() {
 
             @Override
@@ -202,8 +202,8 @@ public class GUIAltPaciente extends JDialog {
                             btBuscar.setVisible(true);
                             btListar.setVisible(true);
                         }
-                        tfcrmMedico.setBackground(Color.black);
-                        tfcrmMedico.setForeground(Color.green);
+                        tfcrmMedico.setBackground(new Color(209,213,219));
+                        tfcrmMedico.setForeground(new Color(59, 130, 246));
                     } catch (Exception x) {
                         tfcrmMedico.setOpaque(true);
                         tfcrmMedico.selectAll();
@@ -215,8 +215,8 @@ public class GUIAltPaciente extends JDialog {
             }
         });
        
-        btSalvar.setForeground(Color.green);
-        btSalvar.setBackground(Color.black);
+        btSalvar.setForeground(new Color(59, 130, 246));
+        btSalvar.setBackground(new Color(209,213,219));
         btSalvar.addActionListener((ActionEvent e) -> {
             if (acao.equals("Adicionar")) {
                 medico = new medico();
@@ -248,8 +248,8 @@ public class GUIAltPaciente extends JDialog {
             tfNome.setEditable(false);
             tfArea.setEditable(false);
         });
-        btAlterar.setForeground(Color.green);
-        btAlterar.setBackground(Color.black);
+        btAlterar.setForeground(new Color(59, 130, 246));
+        btAlterar.setBackground(new Color(209,213,219));
         btAlterar.addActionListener((ActionEvent e) -> {
             btBuscar.setVisible(false);
             btAlterar.setVisible(false);
@@ -264,8 +264,8 @@ public class GUIAltPaciente extends JDialog {
             btExcluir.setVisible(false);
             acao = "alterar";
         });
-        btExcluir.setForeground(Color.green);
-        btExcluir.setBackground(Color.black);
+        btExcluir.setForeground(new Color(59, 130, 246));
+        btExcluir.setBackground(new Color(209,213,219));
         btExcluir.addActionListener((ActionEvent e) -> {
             int response = JOptionPane.showConfirmDialog(cp, "Confirme a exclusão?", "Confirm",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -291,8 +291,8 @@ public class GUIAltPaciente extends JDialog {
             btBuscar.setVisible(true);
             btListar.setVisible(true);
         });
-        btListar.setForeground(Color.green);
-        btListar.setBackground(Color.black);
+        btListar.setForeground(new Color(59, 130, 246));
+        btListar.setBackground(new Color(209,213,219));
         btListar.addActionListener((ActionEvent e) -> {
             List<medico> listaMedico = daoMedico.listInOrderNome();
             String[] colunas1 = {"Crm", "Nome do Médico", "Area do Médico"};
@@ -317,8 +317,8 @@ public class GUIAltPaciente extends JDialog {
             btBuscar.setVisible(true);
         });
         
-        btCancelar.setForeground(Color.green);
-        btCancelar.setBackground(Color.black);
+        btCancelar.setForeground(new Color(59, 130, 246));
+        btCancelar.setBackground(new Color(209,213,219));
         btCancelar.addActionListener((ActionEvent e) -> {
             btCancelar.setVisible(false);
             tfcrmMedico.setText("");
@@ -357,4 +357,3 @@ public class GUIAltPaciente extends JDialog {
     }
 
 }
-
