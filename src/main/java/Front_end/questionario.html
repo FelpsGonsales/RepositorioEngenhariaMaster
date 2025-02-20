@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário Pediátrico</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9; /* Cor de fundo suave */
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .dropbtn {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #e0e0e0; /* Cor clara para os botões */
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .dropbtn:hover {
+            background-color: #d0d0d0;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 100%;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1;
+            border: 1px solid #ccc;
+        }
+        .dropdown-content button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        .dropdown-content button:hover {
+            background-color: #f1f1f1;
+        }
+        .show {
+            display: block;
+        }
+        .finalizar {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 14px; /* Diminuir o tamanho */
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .finalizar:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Questionário</h1>
+        
+        <!-- Pergunta 1 -->
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('pergunta1')">Selecione uma Pergunta</button>
+            <div id="pergunta1" class="dropdown-content">
+                <button onclick="selecionarPergunta(this, 'pergunta1')">Febre</button>
+                <button onclick="selecionarPergunta(this, 'pergunta1')">Tosse</button>
+                <button onclick="selecionarPergunta(this, 'pergunta1')">Dor de cabeça</button>
+                <button onclick="selecionarPergunta(this, 'pergunta1')">Vômito</button>
+                <button onclick="selecionarPergunta(this, 'pergunta1')">Manchas</button>
+                <button onclick="selecionarPergunta(this, 'pergunta1')">Falta de apetite</button>
+            </div>
+        </div>
+        
+        <!-- Resposta 1 -->
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('resposta1')">Selecione uma Resposta</button>
+            <div id="resposta1" class="dropdown-content">
+                <button onclick="selecionarResposta(this, 'resposta1')">Leve</button>
+                <button onclick="selecionarResposta(this, 'resposta1')">Médio</button>
+                <button onclick="selecionarResposta(this, 'resposta1')">Grave</button>
+                <button onclick="selecionarResposta(this, 'resposta1')">Urgente</button>
+                <button onclick="selecionarResposta(this, 'resposta1')">Monitorar</button>
+                <button onclick="selecionarResposta(this, 'resposta1')">Sem Preocupação</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pergunta 2 -->
+    <div class="container">
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('pergunta2')">Selecione uma Pergunta</button>
+            <div id="pergunta2" class="dropdown-content">
+                <button onclick="selecionarPergunta(this, 'pergunta2')">Febre</button>
+                <button onclick="selecionarPergunta(this, 'pergunta2')">Tosse</button>
+                <button onclick="selecionarPergunta(this, 'pergunta2')">Dor de cabeça</button>
+                <button onclick="selecionarPergunta(this, 'pergunta2')">Vômito</button>
+                <button onclick="selecionarPergunta(this, 'pergunta2')">Manchas</button>
+                <button onclick="selecionarPergunta(this, 'pergunta2')">Falta de apetite</button>
+            </div>
+        </div>
+        
+        <!-- Resposta 2 -->
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('resposta2')">Selecione uma Resposta</button>
+            <div id="resposta2" class="dropdown-content">
+                <button onclick="selecionarResposta(this, 'resposta2')">Leve</button>
+                <button onclick="selecionarResposta(this, 'resposta2')">Médio</button>
+                <button onclick="selecionarResposta(this, 'resposta2')">Grave</button>
+                <button onclick="selecionarResposta(this, 'resposta2')">Urgente</button>
+                <button onclick="selecionarResposta(this, 'resposta2')">Monitorar</button>
+                <button onclick="selecionarResposta(this, 'resposta2')">Sem Preocupação</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pergunta 3 -->
+    <div class="container">
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('pergunta3')">Selecione uma Pergunta</button>
+            <div id="pergunta3" class="dropdown-content">
+                <button onclick="selecionarPergunta(this, 'pergunta3')">Febre</button>
+                <button onclick="selecionarPergunta(this, 'pergunta3')">Tosse</button>
+                <button onclick="selecionarPergunta(this, 'pergunta3')">Dor de cabeça</button>
+                <button onclick="selecionarPergunta(this, 'pergunta3')">Vômito</button>
+                <button onclick="selecionarPergunta(this, 'pergunta3')">Manchas</button>
+                <button onclick="selecionarPergunta(this, 'pergunta3')">Falta de apetite</button>
+            </div>
+        </div>
+        
+        <!-- Resposta 3 -->
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('resposta3')">Selecione uma Resposta</button>
+            <div id="resposta3" class="dropdown-content">
+                <button onclick="selecionarResposta(this, 'resposta3')">Leve</button>
+                <button onclick="selecionarResposta(this, 'resposta3')">Médio</button>
+                <button onclick="selecionarResposta(this, 'resposta3')">Grave</button>
+                <button onclick="selecionarResposta(this, 'resposta3')">Urgente</button>
+                <button onclick="selecionarResposta(this, 'resposta3')">Monitorar</button>
+                <button onclick="selecionarResposta(this, 'resposta3')">Sem Preocupação</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Finalizar -->
+    <button class="finalizar" onclick="finalizarQuestionario()">Finalizar</button>
+
+    <script>
+        function toggleDropdown(id) {
+            document.getElementById(id).classList.toggle("show");
+        }
+
+        function selecionarPergunta(elemento, id) {
+            document.querySelector(`#${id} .dropbtn`).textContent = "Pergunta: " + elemento.textContent;
+            document.getElementById(id).classList.remove("show");
+        }
+
+        function selecionarResposta(elemento, id) {
+            document.querySelector(`#${id} .dropbtn`).textContent = "Resposta: " + elemento.textContent;
+            document.getElementById(id).classList.remove("show");
+        }
+
+        function finalizarQuestionario() {
+            alert("Questionário finalizado!");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                let dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
