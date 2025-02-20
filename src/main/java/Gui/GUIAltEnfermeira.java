@@ -83,9 +83,9 @@ public class GUIAltEnfermeira extends JDialog {
         cp.add(pnCentro, BorderLayout.CENTER);
         cp.add(pnSul, BorderLayout.SOUTH);
 
-        pnNorte.setBackground(Color.black);
-        pnCentro.setBackground(Color.black);
-        pnSul.setBackground(Color.black);
+        pnNorte.setBackground(new Color(209,213,219));
+        pnCentro.setBackground(new Color(209,213,219));
+        pnSul.setBackground(new Color(209,213,219));
         pnSul.setBorder(BorderFactory.createLineBorder(Color.gray));
 
         pnNorte.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -111,20 +111,20 @@ public class GUIAltEnfermeira extends JDialog {
         
         
 
-        tfNome.setBackground(Color.black);
-        tfNome.setForeground(Color.green);
+        tfNome.setBackground(new Color(209,213,219));
+        tfNome.setForeground(new Color(59, 130, 246));
 
-        lbNome.setForeground(Color.green);
-        lbNome.setBackground(Color.black);
+        lbNome.setForeground(new Color(59, 130, 246));
+        lbNome.setBackground(new Color(209,213,219));
 
-        lbcipEnfermeira.setBackground(Color.black);
-        lbcipEnfermeira.setForeground(Color.green);
+        lbcipEnfermeira.setBackground(new Color(209,213,219));
+        lbcipEnfermeira.setForeground(new Color(59, 130, 246));
 
-        tfIdade.setForeground(Color.green);
-        tfIdade.setBackground(Color.black);
+        tfIdade.setForeground(new Color(59, 130, 246));
+        tfIdade.setBackground(new Color(209,213,219));
 
-        lbIdade.setBackground(Color.black);
-        lbIdade.setForeground(Color.green);
+        lbIdade.setBackground(new Color(209,213,219));
+        lbIdade.setForeground(new Color(59, 130, 246));
         
         
         cardLayout = new CardLayout();
@@ -134,25 +134,25 @@ public class GUIAltEnfermeira extends JDialog {
             pnVazio.add(new JLabel(" "));
         }
         pnSul.add(pnVazio, "vazio");
-        pnVazio.setBackground(Color.black);
+        pnVazio.setBackground(new Color(209,213,219));
         pnSul.add(pnAvisos, " ");
-        pnAvisos.setBackground(Color.black);
-        pnAvisos.setForeground(Color.green);
+        pnAvisos.setBackground(new Color(209,213,219));
+        pnAvisos.setForeground(new Color(59, 130, 246));
         pnSul.add(pnListagem, "listagem");
-        pnListagem.setBackground(Color.black);
-        pnListagem.setForeground(Color.green);
+        pnListagem.setBackground(new Color(209,213,219));
+        pnListagem.setForeground(new Color(59, 130, 246));
         tabela.setEnabled(false);
-        tabela.setBackground(Color.black);
-        tabela.setForeground(Color.green);
+        tabela.setBackground(new Color(209,213,219));
+        tabela.setForeground(new Color(59, 130, 246));
 
         pnAvisos.add(new JLabel("Avisos"));
 
         tfNome.setEditable(false);
 
-        tfcipEnfermeira.setBackground(Color.black);
-        tfcipEnfermeira.setForeground(Color.green);
-        btBuscar.setForeground(Color.green);
-        btBuscar.setBackground(Color.black);
+        tfcipEnfermeira.setBackground(new Color(209,213,219));
+        tfcipEnfermeira.setForeground(new Color(59, 130, 246));
+        btBuscar.setForeground(new Color(59, 130, 246));
+        btBuscar.setBackground(new Color(209,213,219));
         btBuscar.addActionListener(new ActionListener() {
 
             @Override
@@ -202,8 +202,8 @@ public class GUIAltEnfermeira extends JDialog {
                             btBuscar.setVisible(true);
                             btListar.setVisible(true);
                         }
-                        tfcipEnfermeira.setBackground(Color.black);
-                        tfcipEnfermeira.setForeground(Color.green);
+                        tfcipEnfermeira.setBackground(new Color(209,213,219));
+                        tfcipEnfermeira.setForeground(new Color(59, 130, 246));
                     } catch (Exception x) {
                         tfcipEnfermeira.setOpaque(true);
                         tfcipEnfermeira.selectAll();
@@ -215,8 +215,8 @@ public class GUIAltEnfermeira extends JDialog {
             }
         });
 
-        btSalvar.setForeground(Color.green);
-        btSalvar.setBackground(Color.black);
+        btSalvar.setForeground(new Color(59, 130, 246));
+        btSalvar.setBackground(new Color(209,213,219));
         btSalvar.addActionListener((ActionEvent e) -> {
                   try {
         int cip = Integer.parseInt(tfcipEnfermeira.getText().trim());
@@ -234,7 +234,7 @@ public class GUIAltEnfermeira extends JDialog {
     }
              try {
         int idade = Integer.parseInt(tfIdade.getText().trim());
-        if (idade <= 18 || idade >= 90) {
+        if (idade <= 17 || idade >= 90) {
             JOptionPane.showMessageDialog(cp, "A idade deve estar entre 18 e 90 anos.", "Erro de validação", JOptionPane.ERROR_MESSAGE);
             tfIdade.requestFocus();
             return;
@@ -274,8 +274,8 @@ public class GUIAltEnfermeira extends JDialog {
             tfNome.setEditable(false);
             tfIdade.setEditable(false);
         });
-        btAlterar.setForeground(Color.green);
-        btAlterar.setBackground(Color.black);
+        btAlterar.setForeground(new Color(59, 130, 246));
+        btAlterar.setBackground(new Color(209,213,219));
         btAlterar.addActionListener((ActionEvent e) -> {
             btBuscar.setVisible(false);
             btAlterar.setVisible(false);
@@ -290,8 +290,8 @@ public class GUIAltEnfermeira extends JDialog {
             btExcluir.setVisible(false);
             acao = "alterar";
         });
-        btExcluir.setForeground(Color.green);
-        btExcluir.setBackground(Color.black);
+        btExcluir.setForeground(new Color(59, 130, 246));
+        btExcluir.setBackground(new Color(209,213,219));
         btExcluir.addActionListener((ActionEvent e) -> {
             int response = JOptionPane.showConfirmDialog(cp, "Confirme a exclusão?", "Confirm",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -317,8 +317,8 @@ public class GUIAltEnfermeira extends JDialog {
             btBuscar.setVisible(true);
             btListar.setVisible(true);
         });
-        btListar.setForeground(Color.green);
-        btListar.setBackground(Color.black);
+        btListar.setForeground(new Color(59, 130, 246));
+        btListar.setBackground(new Color(209,213,219));
         btListar.addActionListener((ActionEvent e) -> {
             List<enfermeira> listaMedico = daoEnfermeira.listInOrderNome();
             String[] colunas1 = {"Cip", "Nome da Enfermeira", "Idade"};
@@ -343,8 +343,8 @@ public class GUIAltEnfermeira extends JDialog {
             btBuscar.setVisible(true);
         });
         
-        btCancelar.setForeground(Color.green);
-        btCancelar.setBackground(Color.black);
+        btCancelar.setForeground(new Color(59, 130, 246));
+        btCancelar.setBackground(new Color(209,213,219));
         btCancelar.addActionListener((ActionEvent e) -> {
             btCancelar.setVisible(false);
             tfcipEnfermeira.setText("");
@@ -383,4 +383,3 @@ public class GUIAltEnfermeira extends JDialog {
     }
 
 }
-
