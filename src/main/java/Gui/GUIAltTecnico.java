@@ -84,10 +84,10 @@ public class GUIAltTecnico extends JDialog {
         cp.add(pnCentro, BorderLayout.CENTER);
         cp.add(pnSul, BorderLayout.SOUTH);
 
-        pnNorte.setBackground(Color.black);
-        pnCentro.setBackground(Color.black);
-        pnSul.setBackground(Color.black);
-        pnSul.setBorder(BorderFactory.createLineBorder(Color.gray));
+        pnNorte.setBackground(new Color(209,213,219));
+        pnCentro.setBackground(new Color(209,213,219));
+        pnSul.setBackground(new Color(209,213,219));
+        pnSul.setBorder(BorderFactory.createLineBorder(new Color(37, 99, 235),1));
 
         pnNorte.setLayout(new FlowLayout(FlowLayout.LEFT));
         pnNorte.add(lbIdTecnico);
@@ -114,20 +114,20 @@ public class GUIAltTecnico extends JDialog {
         
         
 
-        tfNomeT.setBackground(Color.black);
-        tfNomeT.setForeground(Color.green);
+        tfNomeT.setBackground(new Color(209,213,219));
+        tfNomeT.setForeground(new Color(59, 130, 246));
 
-        lbNomeT.setForeground(Color.green);
-        lbNomeT.setBackground(Color.black);
+        lbNomeT.setForeground(new Color(59, 130, 246));
+        lbNomeT.setBackground(new Color(209,213,219));
 
-        lbIdTecnico.setBackground(Color.black);
-        lbIdTecnico.setForeground(Color.green);
+        lbIdTecnico.setBackground(new Color(209,213,219));
+        lbIdTecnico.setForeground(new Color(59, 130, 246));
 
-        tfAreaT.setForeground(Color.green);
-        tfAreaT.setBackground(Color.black);
+        tfAreaT.setForeground(new Color(59, 130, 246));
+        tfAreaT.setBackground(new Color(209,213,219));
 
-        lbAreaT.setBackground(Color.black);
-        lbAreaT.setForeground(Color.green);
+        lbAreaT.setBackground(new Color(209,213,219));
+        lbAreaT.setForeground(new Color(59, 130, 246));
         
         
         cardLayout = new CardLayout();
@@ -137,25 +137,25 @@ public class GUIAltTecnico extends JDialog {
             pnVazio.add(new JLabel(" "));
         }
         pnSul.add(pnVazio, "vazio");
-        pnVazio.setBackground(Color.black);
+        pnVazio.setBackground(new Color(209,213,219));
         pnSul.add(pnAvisos, " ");
-        pnAvisos.setBackground(Color.black);
-        pnAvisos.setForeground(Color.green);
+        pnAvisos.setBackground(new Color(209,213,219));
+        pnAvisos.setForeground(new Color(59, 130, 246));
         pnSul.add(pnListagem, "listagem");
-        pnListagem.setBackground(Color.black);
-        pnListagem.setForeground(Color.green);
+        pnListagem.setBackground(new Color(209,213,219));
+        pnListagem.setForeground(new Color(59, 130, 246));
         tabela.setEnabled(false);
-        tabela.setBackground(Color.black);
-        tabela.setForeground(Color.green);
+        tabela.setBackground(new Color(209,213,219));
+        tabela.setForeground(new Color(59, 130, 246));
 
         pnAvisos.add(new JLabel("Avisos"));
 
         tfNomeT.setEditable(false);
 
-        tfIdTecnico.setBackground(Color.black);
-        tfIdTecnico.setForeground(Color.green);
-        btBuscar.setForeground(Color.green);
-        btBuscar.setBackground(Color.black);
+        tfIdTecnico.setBackground(new Color(209,213,219));
+        tfIdTecnico.setForeground(new Color(59, 130, 246));
+        btBuscar.setForeground(new Color(59, 130, 246));
+        btBuscar.setBackground(new Color(209,213,219));
         btBuscar.addActionListener(new ActionListener() {
 
             @Override
@@ -206,8 +206,8 @@ public class GUIAltTecnico extends JDialog {
                             btBuscar.setVisible(true);
                             btListar.setVisible(true);
                         }
-                        tfIdTecnico.setBackground(Color.black);
-                        tfIdTecnico.setForeground(Color.green);
+                        tfIdTecnico.setBackground(new Color(209,213,219));
+                        tfIdTecnico.setForeground(new Color(59, 130, 246));
                     } catch (Exception x) {
                         tfIdTecnico.setOpaque(true);
                         tfIdTecnico.selectAll();
@@ -219,8 +219,8 @@ public class GUIAltTecnico extends JDialog {
             }
         });
         
-        btSalvar.setForeground(Color.green);
-        btSalvar.setBackground(Color.black);
+        btSalvar.setForeground(new Color(59, 130, 246));
+        btSalvar.setBackground(new Color(209,213,219));
         btSalvar.addActionListener((ActionEvent e) -> {
             if (acao.equals("Adicionar")) {
                 tecnico = new tecnico();
@@ -252,8 +252,8 @@ public class GUIAltTecnico extends JDialog {
             tfNomeT.setEditable(false);
             tfAreaT.setEditable(false);
         });
-        btAlterar.setForeground(Color.green);
-        btAlterar.setBackground(Color.black);
+        btAlterar.setForeground(new Color(59, 130, 246));
+        btAlterar.setBackground(new Color(209,213,219));
         btAlterar.addActionListener((ActionEvent e) -> {
             btBuscar.setVisible(false);
             btAlterar.setVisible(false);
@@ -268,8 +268,8 @@ public class GUIAltTecnico extends JDialog {
             btExcluir.setVisible(false);
             acao = "alterar";
         });
-        btExcluir.setForeground(Color.green);
-        btExcluir.setBackground(Color.black);
+        btExcluir.setForeground(new Color(59, 130, 246));
+        btExcluir.setBackground(new Color(209,213,219));
         btExcluir.addActionListener((ActionEvent e) -> {
             int response = JOptionPane.showConfirmDialog(cp, "Confirme a exclusão?", "Confirm",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -296,8 +296,8 @@ public class GUIAltTecnico extends JDialog {
             btBuscar.setVisible(true);
             btListar.setVisible(true);
         });
-        btListar.setForeground(Color.green);
-        btListar.setBackground(Color.black);
+        btListar.setForeground(new Color(59, 130, 246));
+        btListar.setBackground(new Color(209,213,219));
         btListar.addActionListener((ActionEvent e) -> {
             List<tecnico> listaMedico = daoTecnico.listInOrderNome();
             String[] colunas1 = {"Crm", "Nome do Médico", "Area do Médico"};
@@ -323,8 +323,8 @@ public class GUIAltTecnico extends JDialog {
             btAdicionar.setVisible(false);
         });
         
-        btCancelar.setForeground(Color.green);
-        btCancelar.setBackground(Color.black);
+        btCancelar.setForeground(new Color(59, 130, 246));
+        btCancelar.setBackground(new Color(209,213,219));
         btCancelar.addActionListener((ActionEvent e) -> {
             btCancelar.setVisible(false);
             tfIdTecnico.setText("");
@@ -363,4 +363,3 @@ public class GUIAltTecnico extends JDialog {
     }
 
 }
-
