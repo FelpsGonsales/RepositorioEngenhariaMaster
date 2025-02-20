@@ -1,13 +1,10 @@
 package Gui;
 
-
 import DAOs.DAOtecnico;
-import Gui.GUITecnico;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class GUILoginTecnico extends JFrame {
     JTextField tfId = new JTextField(15);
@@ -15,12 +12,36 @@ public class GUILoginTecnico extends JFrame {
     JButton btCancelar = new JButton("Cancelar");
 
     public GUILoginTecnico() {
-        setTitle("Tela de Login");
-        setSize(300, 150);
+        setTitle("Tela de Login - Técnico");
+        setSize(320, 180); // Ajustei o tamanho para acomodar melhor os botões
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        add(new JLabel("Identificador:"));
+        // Define o fundo da janela
+        getContentPane().setBackground(new Color(209, 213, 219));
+
+        // Configurações de cores para os componentes
+        Color textColor = new Color(59, 130, 246);
+        Color borderColor = new Color(37, 99, 235);
+
+        JLabel lblIdentificador = new JLabel("Identificador:");
+        lblIdentificador.setForeground(textColor);
+
+        tfId.setBorder(BorderFactory.createLineBorder(borderColor, 1));
+        tfId.setForeground(textColor);
+
+        // Aumentando o tamanho dos botões
+        Dimension buttonSize = new Dimension(120, 30);
+        btLogin.setPreferredSize(buttonSize);
+        btCancelar.setPreferredSize(buttonSize);
+
+        btLogin.setForeground(textColor);
+        btLogin.setBorder(BorderFactory.createLineBorder(borderColor, 1));
+
+        btCancelar.setForeground(textColor);
+        btCancelar.setBorder(BorderFactory.createLineBorder(borderColor, 1));
+
+        add(lblIdentificador);
         add(tfId);
         add(btLogin);
         add(btCancelar);
@@ -37,9 +58,8 @@ public class GUILoginTecnico extends JFrame {
                 // Verificar no banco de dados
                 if (tecnicoExiste(identificador)) {
                     JOptionPane.showMessageDialog(null, "Bem-vindo!");
-                  new GUIControleTecnico();
-                  dispose();
-                    
+                    new GUIControleTecnico();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuário não encontrado. Redirecionando...");
                     new GUITecnico();
@@ -52,13 +72,12 @@ public class GUILoginTecnico extends JFrame {
         setVisible(true);
     }
 
-    // Método para verificar se o médico existe
+    // Método para verificar se o técnico existe
     public boolean tecnicoExiste(String identificador) {
-        // Utilize o método criado anteriormente
-        return new DAOtecnico().tecnicoExiste(identificador); 
+        return new DAOtecnico().tecnicoExiste(identificador);
     }
 
     public static void main(String[] args) {
-        new GUILoginMedico();
+        new GUILoginTecnico();
     }
 }
