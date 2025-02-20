@@ -1,7 +1,6 @@
 package Gui;
 
 import DAOs.DAOmedico;
-import Gui.GUIMedico;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,12 +12,36 @@ public class GUILoginMedico extends JFrame {
     JButton btCancelar = new JButton("Cancelar");
 
     public GUILoginMedico() {
-        setTitle("Tela de Login");
-        setSize(300, 150);
+        setTitle("Tela de Login - Médico");
+        setSize(320, 180); // Ajustei o tamanho para acomodar melhor os botões
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        add(new JLabel("CRM:"));
+        // Define o fundo da janela
+        getContentPane().setBackground(new Color(209, 213, 219));
+
+        // Configurações de cores para os componentes
+        Color textColor = new Color(59, 130, 246);
+        Color borderColor = new Color(37, 99, 235);
+
+        JLabel lblCRM = new JLabel("CRM:");
+        lblCRM.setForeground(textColor);
+
+        tfCRM.setBorder(BorderFactory.createLineBorder(borderColor, 1));
+        tfCRM.setForeground(textColor);
+
+        // Aumentando o tamanho dos botões
+        Dimension buttonSize = new Dimension(120, 30);
+        btLogin.setPreferredSize(buttonSize);
+        btCancelar.setPreferredSize(buttonSize);
+
+        btLogin.setForeground(textColor);
+        btLogin.setBorder(BorderFactory.createLineBorder(borderColor, 1));
+
+        btCancelar.setForeground(textColor);
+        btCancelar.setBorder(BorderFactory.createLineBorder(borderColor, 1));
+
+        add(lblCRM);
         add(tfCRM);
         add(btLogin);
         add(btCancelar);
@@ -35,9 +58,8 @@ public class GUILoginMedico extends JFrame {
                 // Verificar no banco de dados
                 if (medicoExiste(crm)) {
                     JOptionPane.showMessageDialog(null, "Bem-vindo!");
-                  new GUIControleMedico();
-                  dispose();
-                    
+                    new GUIControleMedico();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuário não encontrado. Redirecionando...");
                     new GUIMedico();
@@ -52,8 +74,7 @@ public class GUILoginMedico extends JFrame {
 
     // Método para verificar se o médico existe
     public boolean medicoExiste(String crm) {
-        // Utilize o método criado anteriormente
-        return new DAOmedico().medicoExiste(crm); 
+        return new DAOmedico().medicoExiste(crm);
     }
 
     public static void main(String[] args) {
