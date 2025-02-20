@@ -16,34 +16,29 @@ public class PEWS extends JFrame {
     private JTextField nebulizacaoResgateField, emesePosOperatorioField;
     private JTextArea resultadoArea;
     private JComboBox<medico> medicoComboBox;
-    private JComboBox<paciente> pacienteComboBox; // ComboBox para pacientes
+    private JComboBox<paciente> pacienteComboBox;
 
     private EntityManagerFactory emf;
     private EntityManager em;
 
     public PEWS() {
-        // Configuração do JFrame
         setTitle("PEWS - Sistema de Avaliação");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centraliza a janela
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(18, 2, 10, 10)); // Layout com 18 linhas e 2 colunas
-        panel.setBackground(Color.WHITE);
+        panel.setLayout(new GridLayout(18, 2, 10, 10));
+        panel.setBackground(new Color(209, 213, 219));
 
-        // Adicionando o ComboBox para selecionar o médico
         panel.add(new JLabel("Médico:"));
         medicoComboBox = new JComboBox<>();
         panel.add(medicoComboBox);
 
-        // Adicionando o ComboBox para selecionar o paciente
         panel.add(new JLabel("Paciente:"));
         pacienteComboBox = new JComboBox<>();
         panel.add(pacienteComboBox);
-
-        // Outros campos já existentes
 
         panel.add(new JLabel("Leito:"));
         leitoField = new JTextField();
@@ -93,41 +88,29 @@ public class PEWS extends JFrame {
         emesePosOperatorioField = new JTextField();
         panel.add(emesePosOperatorioField);
 
-        // Botão para calcular
         JButton calcularButton = new JButton("Calcular");
-        calcularButton.setBackground(Color.GREEN);
-        calcularButton.setForeground(Color.WHITE);
+        calcularButton.setBackground(new Color(209, 213, 219));
+        calcularButton.setForeground(new Color(59, 130, 246));
         panel.add(calcularButton);
 
-        // Área de resultados
         resultadoArea = new JTextArea();
         resultadoArea.setEditable(false);
-        resultadoArea.setBackground(Color.LIGHT_GRAY);
+        resultadoArea.setBackground(new Color(209, 213, 219));
         resultadoArea.setFont(new Font("Arial", Font.PLAIN, 14));
         JScrollPane scrollPane = new JScrollPane(resultadoArea);
 
-        // Adiciona o painel de entradas e botões
         add(panel, BorderLayout.NORTH);
 
-        // Configurar o EntityManager para JPA
-        emf = Persistence.createEntityManagerFactory("UP"); // Nome da unidade de persistência (definido no persistence.xml)
+        emf = Persistence.createEntityManagerFactory("UP");
         em = emf.createEntityManager();
 
-        // Carregar médicos e pacientes do banco de dados
         carregarMedicos();
         carregarPacientes();
 
-        // Ação do botão "Calcular"
-        calcularButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                calcularResultados();
-            }
-        });
+        calcularButton.addActionListener(e -> calcularResultados());
     }
 
     private void carregarMedicos() {
-        // Consultar médicos usando JPA
         try {
             TypedQuery<medico> query = em.createNamedQuery("medico.findAll", medico.class);
             List<medico> medicos = query.getResultList();
@@ -142,28 +125,35 @@ public class PEWS extends JFrame {
     }
 
     private void carregarPacientes() {
-        // Consultar pacientes usando JPA
         try {
             TypedQuery<paciente> query = em.createNamedQuery("paciente.findAll", paciente.class);
             List<paciente> pacientes = query.getResultList();
+
+            if (pacientes.isEmpty()) {
+                throw new Exception("Nenhum paciente cadastrado no sistema.");
+            }
 
             for (paciente p : pacientes) {
                 pacienteComboBox.addItem(p);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar pacientes do banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
- private void calcularResultados() {
+   private void calcularResultados() {
     try {
-        // Coletar dados dos campos
-        medico medicoSelecionado = (medico) medicoComboBox.getSelectedItem();
-        int crm = medicoSelecionado != null ? medicoSelecionado.getcrm() : -1;
+        // Verificar se o paciente foi selecionado
+        if (pacienteComboBox.getItemCount() == 0) {
+            throw new Exception("Nenhum paciente selecionado! Por favor, cadastre um paciente primeiro.");
+        }
 
+        // Coletar dados dos campos
         paciente pacienteSelecionado = (paciente) pacienteComboBox.getSelectedItem();
         int idpaciente = pacienteSelecionado != null ? pacienteSelecionado.getidpaciente() : -1;
+
+        medico medicoSelecionado = (medico) medicoComboBox.getSelectedItem();
+        int crm = medicoSelecionado != null ? medicoSelecionado.getcrm() : -1;
 
         String leito = leitoField.getText();
         String dih = dihField.getText();
@@ -223,19 +213,16 @@ public class PEWS extends JFrame {
             System.exit(0); // Fechar o programa
         }
 
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
     }
 }
 
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PEWS().setVisible(true);
-            }
-        });
-    }
-}
+public static void main(String[] args) {
+    SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+            new PEWS().setVisible(true);
+        }
+    });
+}}
