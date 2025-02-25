@@ -17,7 +17,7 @@ public class DAOtecnico extends DAOGenerico<tecnico> {
     }
 
     public int autoidentificador() {
-        Integer a = (Integer) em.createQuery("SELECT MAX(e.identificador) FROM tecnico_enfermagem e ").getSingleResult();
+        Integer a = (Integer) em.createQuery("SELECT MAX(e.identificador) FROM tecnico e ").getSingleResult();
         if (a != null) {
             return a + 1;
         } else {
@@ -26,27 +26,27 @@ public class DAOtecnico extends DAOGenerico<tecnico> {
     }
 
     public List<tecnico> listByNome(String nome_tecnico) {
-        return em.createQuery("SELECT e FROM tecnico_enfermagem e WHERE e.identificador) LIKE :nome_tecnico").setParameter("nome_tecnico", "%" + nome_tecnico + "%").getResultList();
+        return em.createQuery("SELECT e FROM tecnico e WHERE e.identificador) LIKE :nome_tecnico").setParameter("nome_tecnico", "%" + nome_tecnico + "%").getResultList();
     }
 
     public List<tecnico> listById(int identificador) {
-        return em.createQuery("SELECT e FROM tecnico_enfermagem + e WHERE e.identificador= :identificador").setParameter("identificador", identificador).getResultList();
+        return em.createQuery("SELECT e FROM tecnico + e WHERE e.identificador= :identificador").setParameter("identificador", identificador).getResultList();
     }
     
       public List<tecnico> listByArea(String area_tecnico) {
-        return em.createQuery("SELECT e FROM tecnico_enfermagem e WHERE e.identificador) LIKE: area_tecnico").setParameter("area_tecnico","%" + area_tecnico + "%").getResultList();
+        return em.createQuery("SELECT e FROM tecnico e WHERE e.identificador) LIKE: area_tecnico").setParameter("area_tecnico","%" + area_tecnico + "%").getResultList();
     }
 
     public List<tecnico> listInOrderNome() {
-        return em.createQuery("SELECT e FROM tecnico_enfermagem e ORDER BY e.nome_tecnico").getResultList();
+        return em.createQuery("SELECT e FROM tecnico e ORDER BY e.nome_tecnico").getResultList();
     }
 
     public List<tecnico> listInOrderId() {
-        return em.createQuery("SELECT e FROM tecnico_enfermagem e ORDER BY e.identificador").getResultList();
+        return em.createQuery("SELECT e FROM tecnico e ORDER BY e.identificador").getResultList();
     }
     
     public List<tecnico> listInOrderArea() {
-        return em.createQuery("SELECT e FROM tecnico_enfermagem e ORDER BY e.area_tecnico").getResultList();
+        return em.createQuery("SELECT e FROM tecnico e ORDER BY e.area_tecnico").getResultList();
     } 
         
 
@@ -73,7 +73,7 @@ public class DAOtecnico extends DAOGenerico<tecnico> {
         return ls;
     }
 public boolean tecnicoExiste(String identificador) {
-    String sql = "SELECT COUNT(*) FROM tecnico_enfermagem WHERE identificador = ?";
+    String sql = "SELECT COUNT(*) FROM tecnico WHERE identificador = ?";
     try (Connection conn = Conectar.getConnection();
          PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -89,10 +89,10 @@ public boolean tecnicoExiste(String identificador) {
 }
 
     public static void main(String[] args) {
-        DAOtecnico daotecnico_enfermagem = new DAOtecnico();
-        List<tecnico> listatecnico_enfermagem = daotecnico_enfermagem.list();
-        for (tecnico tecnico_enfermagem : listatecnico_enfermagem) {
-            System.out.println(tecnico_enfermagem.getidentificador()+ "-" + tecnico_enfermagem.getnome_tecnico()+ "-" + tecnico_enfermagem.getarea_tecnico());
+        DAOtecnico daotecnico = new DAOtecnico();
+        List<tecnico> listatecnico = daotecnico.list();
+        for (tecnico tecnico : listatecnico) {
+            System.out.println(tecnico.getidentificador()+ "-" + tecnico.getnome_tecnico()+ "-" + tecnico.getarea_tecnico());
         }
     }
 }
